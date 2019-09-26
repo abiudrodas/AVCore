@@ -1,0 +1,90 @@
+slots:
+  id_code:
+    type: text
+entities:
+  - id_code
+  - number
+  - time
+intents:
+  - greet:
+      triggers: utter_greet
+      entities: false
+  - fine_ask:
+      triggers: utter_reply
+      entities: false
+  - fine_normal:
+      triggers: utter_help
+      entities: false
+  - thanks
+  - bye:
+      triggers: utter_bye
+      entities: false
+  - set_vacations
+  - get_vacations_available
+  - get_nomina
+  - set_schedule_in
+  - set_schedule_out
+  - affirmative
+  - negation
+  - user_number
+  - vacation_range
+actions:
+  - action_restart
+  - utter_greet
+  - utter_reply
+  - utter_help
+  - utter_anything_else
+  - utter_bye
+  - utter_default
+  - utter_get_vacations
+  - utter_set_vacations_confirmation
+  - utter_set_vacations
+  - utter_user_number
+  - utter_set_schedule_in
+  - utter_set_schedule_out
+  - utter_nomina
+templates:
+  utter_greet:
+    - text: Hola, como estas?
+    - text: Que tal, como va todo?
+  utter_reply:
+    - text: Muy bien, Que puedo hacer por ti?
+    - text: Pefectamente, en que puedo ayudarte?
+  utter_help:
+    - text: Genial, como puedo ayudarte?
+    - text: Genial, dime que puedo hacer por ti?
+  utter_anything_else:
+    - text: Hay algo mas en lo que pueda ayudarte?
+    - text: Dime si hay algo mas que en lo que pueda ayudarte
+    - text: Puedo hacer algo más por ti?
+  utter_bye:
+    - text: adios que tengas un buen dia
+    - text: ciao, un placer servirte
+  utter_default:
+    - text: No estoy seguro de lo que me estas pidiendo.
+    - text: Lo siento, no te entiendo.
+    - text: Perdón, no te estoy entendiendo.
+  utter_set_vacations:
+    - text: Perfecto, que días quieres coger de vacaciones?
+    - text: Muy bien, indicame que periodo vacacional quieres coger
+    - text: Genial, indicame los días de vacaciones que quieres coger
+  utter_set_vacations_confirmation:
+    - text: Tus vacaciones en el periodo N han sido registradas.
+    - text: Tu periodo vacacional del N al M han sido registradas.
+    - text: Perfecto, tus dias de vacaciones del N al M han quedado registrados
+  utter_get_vacations:
+    - text: Te quedan N dias de vacaciones
+    - text: Puedes difrutar de N días de vaciones.
+    - text: Actualmente tienes disponibles N días de vacaciones.
+    - text: Tienes disponibles N días de vacaciones
+  utter_user_number:
+    - text: Necesito tu numero de empleado o DNI/NIE/NIF
+    - text: Ok. Indicame tu DNI/NIE/NIF
+    - text: Vale, necesito tu numero de usuario (DNI/NIE/NIF)
+  utter_set_schedule_in:
+    - text: Tu entrada ha sido registrada
+  utter_set_schedule_out:
+    - text: Tu salida ha sido registrada
+  utter_nomina:
+    - text: aun no puedo hacer eso, lo siento
+
