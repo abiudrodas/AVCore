@@ -52,9 +52,12 @@
 - utter_set_schedule_out
 - utter_anything_else
 
-## get nominas
-* get_nomina
-- utter_user_number
-* user_number
-- utter_nomina
+## get nominas interval
+* get_nomina{"interval": "05 2019 06 2019"}
+- action_get_nomina
+- utter_anything_else
+
+## get nomina one month
+* get_nomina{"month": "05 2019"}
+- action_get_nomina
 - utter_anything_else

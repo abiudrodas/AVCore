@@ -5,6 +5,10 @@ entities:
   - id_code
   - number
   - time
+  - interval
+  - day
+  - week
+  - month
 intents:
   - greet:
       triggers: utter_greet
@@ -42,7 +46,9 @@ actions:
   - utter_user_number
   - utter_set_schedule_in
   - utter_set_schedule_out
-  - utter_nomina
+  - utter_nomina_interval
+  - utter_nomina_month
+  - action_get_nomina
 templates:
   utter_greet:
     - text: Hola, como estas?
@@ -85,6 +91,8 @@ templates:
     - text: Tu entrada ha sido registrada
   utter_set_schedule_out:
     - text: Tu salida ha sido registrada
-  utter_nomina:
-    - text: aun no puedo hacer eso, lo siento
+  utter_nomina_interval:
+    - text: Aún no puedo darte las nóminas para el periodo indicado
+  utter_nomina_month:
+    - text: Aún no puedo darte la nómina para el mes solicitado
 
