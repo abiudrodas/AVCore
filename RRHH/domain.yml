@@ -32,6 +32,8 @@ intents:
   - negation
   - user_number
   - vacation_range
+  - get_schedule_in
+  - get_schedule_out
 actions:
   - action_restart
   - utter_greet
@@ -44,12 +46,12 @@ actions:
   - utter_set_vacations_confirmation
   - utter_set_vacations
   - utter_user_number
-  - utter_set_schedule_in
-  - utter_set_schedule_out
   - utter_nomina_interval
   - utter_nomina_month
   - action_get_nomina
   - action_set_schedule
+  - action_get_schedule
+  - utter_get_schedule
 templates:
   utter_greet:
     - text: Hola, como estas?
@@ -80,18 +82,16 @@ templates:
     - text: Tu periodo vacacional del N al M han sido registradas.
     - text: Perfecto, tus dias de vacaciones del N al M han quedado registrados
   utter_get_vacations:
-    - text: Te quedan N dias de vacaciones
-    - text: Puedes difrutar de N días de vaciones.
-    - text: Actualmente tienes disponibles N días de vacaciones.
-    - text: Tienes disponibles N días de vacaciones
+    - text: Te quedan 21 dias de vacaciones
+    - text: Puedes difrutar de 21 días de vaciones.
+    - text: Actualmente tienes disponibles 21 días de vacaciones.
+    - text: Tienes disponibles 21 días de vacaciones
   utter_user_number:
     - text: Necesito tu numero de empleado o DNI/NIE/NIF
     - text: Ok. Indicame tu DNI/NIE/NIF
     - text: Vale, necesito tu numero de usuario (DNI/NIE/NIF)
-  utter_set_schedule_in:
-    - text: Tu entrada ha sido registrada
-  utter_set_schedule_out:
-    - text: Tu salida ha sido registrada
+  utter_get_schedule:
+    - text: el registro de tu entrada/salida del día M ha sido a las N horas
   utter_nomina_interval:
     - text: Aún no puedo darte las nóminas para el periodo indicado
   utter_nomina_month:

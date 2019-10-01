@@ -44,6 +44,16 @@
 - action_set_schedule
 - utter_anything_else
 
+## get schedule in
+* get_schedule_in
+- action_get_schedule
+- utter_anything_else
+
+## get schedule out
+* get_schedule_out
+- action_get_schedule
+- utter_anything_else
+
 ## get nominas interval
 * get_nomina{"interval": "05 2019 06 2019"}
 - action_get_nomina

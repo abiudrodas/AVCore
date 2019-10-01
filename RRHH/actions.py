@@ -74,3 +74,25 @@ class ActionsetSchedule(Action):
         dispatcher.utter_message(utter_schedule)
 
         return []
+
+class ActionsgetSchedule(Action):
+
+    def name(self) -> Text:
+        return "action_get_schedule"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        utter_schedule = ""
+        intent = tracker.latest_message["intent"]["name"]
+        entity = tracker.latest_message["entities"][0]['entity']
+        date = next(tracker.get_latest_entity_values(entity))
+        print(date)
+        if intent == "get_schedule_in":
+            utter_schedule = "Tu entrada del " + date + " ha sido registrada a las 08:00 hrs"
+        elif intent == "get_schedule_out":
+            utter_schedule = "Tu salida del " + date + " ha sido registrada a las 18:00 hrs"
+
+        dispatcher.utter_message(utter_schedule)
+
+        return []
