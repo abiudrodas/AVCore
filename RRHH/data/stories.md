@@ -17,7 +17,12 @@
 * set_vacations
 - utter_set_vacations
 * vacation_range
-- utter_set_vacations_confirmation
+- action_set_vacations
+- utter_anything_else
+
+## set vacations path 2
+* vacation_range
+- action_set_vacations
 - utter_anything_else
 
 ## get vacations path

@@ -51,6 +51,7 @@ actions:
   - action_get_nomina
   - action_set_schedule
   - action_get_schedule
+  - action_set_vacations
   - utter_get_schedule
 templates:
   utter_greet:

@@ -89,10 +89,36 @@ class ActionsgetSchedule(Action):
         date = next(tracker.get_latest_entity_values(entity))
         print(date)
         if intent == "get_schedule_in":
-            utter_schedule = "Tu entrada del " + date + " ha sido registrada a las 08:00 hrs"
+            utter_schedule = "Tu entrada del " + date + " se registró a las 08:00 hrs"
         elif intent == "get_schedule_out":
-            utter_schedule = "Tu salida del " + date + " ha sido registrada a las 18:00 hrs"
+            utter_schedule = "Tu salida del " + date + " se registró a las 18:00 hrs"
 
         dispatcher.utter_message(utter_schedule)
+
+        return []
+
+
+class ActionsetVacations(Action):
+
+    def name(self) -> Text:
+        return "action_set_vacations"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entity = tracker.latest_message["entities"][0]['entity']
+
+        if entity == 'interval':
+            interval = next(tracker.get_latest_entity_values(entity))
+            interval = interval.split(" ")
+            interval_str = "del " + interval[0] + " al " + interval[1]
+            dispatcher.utter_message("Perfecto, tus dias de vacaciones "+ interval_str + " han quedado registrados")
+
+        elif entity == 'day':
+            day = next(tracker.get_latest_entity_values(entity))
+            utter_str = "OK, te he pedido vacaciones el día " + day
+
+            dispatcher.utter_message(utter_str)
 
         return []
