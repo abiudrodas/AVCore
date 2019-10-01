@@ -15,8 +15,6 @@
 
 ## set vacations path
 * set_vacations
-- utter_user_number
-* user_number
 - utter_set_vacations
 * vacation_range
 - utter_set_vacations_confirmation
@@ -24,8 +22,6 @@
 
 ## get vacations path
 * get_vacations_available
-- utter_user_number
-* user_number
 - utter_get_vacations
 - utter_anything_else
 
@@ -40,16 +36,12 @@
 
 ## schedule  in 
 * set_schedule_in
-- utter_user_number
-* user_number
-- utter_set_schedule_in
+- action_set_schedule
 - utter_anything_else
 
 ## schedule  out 
 * set_schedule_out
-- utter_user_number
-* user_number
-- utter_set_schedule_out
+- action_set_schedule
 - utter_anything_else
 
 ## get nominas interval

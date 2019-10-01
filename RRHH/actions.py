@@ -22,22 +22,55 @@ class ActiongetNominas(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         entity = tracker.latest_message["entities"][0]['entity']
+
         if entity == 'interval':
             interval = next(tracker.get_latest_entity_values(entity))
             interval = interval.split(" ")
-
             interval_str = "del " + interval[0] + "/" + interval[1] + " al " + interval[2] + "/" + interval[3]
-
             dispatcher.utter_message(
                 "Aún no puedo darte las nóminas del periodo " + interval_str + " porque no estoy integrado a ningún CRM")
 
         elif entity == 'month':
-            month = next(tracker.get_latest_entity_values(entity))
-            month = month.split(" ")
+            months = next(tracker.get_latest_entity_values(entity))
+            months = months.split("/")
+            utter_months = ""
+            month_str = ""
 
-            month_str = month[0] + "/" + month[1]
+            if len(months) == 1:
+                unit_month = months[0].split(" ")
+                print("UNIT MONTH ",unit_month)
+                month_str = unit_month[0] + "/" + unit_month[1]
+                utter_months = "Aun no puedo darte la nomina del " + month_str + " porque no estoy integrado a ningún CRM"
+            elif len(months) > 1:
+                for month in months:
+                    month = month.split(" ")
+                    month_str = month_str + month[0] + "/" + month[1] + ", "
+                utter_months = "Aun no puedo darte las nominas de los meses " + month_str.strip(
+                    ", ") + " porque no estoy integrado a ningún CRM"
 
-            dispatcher.utter_message(
-                "Aún no puedo darte la nómina del " + month_str + " porque no estoy integrado a ningún CRM")
+            dispatcher.utter_message(utter_months)
+
+        return []
+
+class ActionsetSchedule(Action):
+
+    def name(self) -> Text:
+        return "action_set_schedule"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        utter_schedule = ""
+        intent = tracker.latest_message["intent"]["name"]
+        entity = tracker.latest_message["entities"][0]['entity']
+        date = next(tracker.get_latest_entity_values(entity))
+        date = date.split(" ")
+        print(date)
+        if intent == "set_schedule_in":
+            utter_schedule = "Tu entrada del " + date[1] + " ha sido registrada a las " + date[0]
+        elif intent == "set_schedule_out":
+            utter_schedule = "Tu salida del " + date[1] + " ha sido registrada a las " + date[0]
+
+        dispatcher.utter_message(utter_schedule)
 
         return []

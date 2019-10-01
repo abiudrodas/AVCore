@@ -49,6 +49,7 @@ actions:
   - utter_nomina_interval
   - utter_nomina_month
   - action_get_nomina
+  - action_set_schedule
 templates:
   utter_greet:
     - text: Hola, como estas?
