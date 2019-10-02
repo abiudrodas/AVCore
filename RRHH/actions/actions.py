@@ -11,6 +11,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from datetime import datetime, timedelta
 
 class ActiongetNominas(Action):
 
@@ -112,7 +113,12 @@ class ActionsetVacations(Action):
         if entity == 'interval':
             interval = next(tracker.get_latest_entity_values(entity))
             interval = interval.split(" ")
-            interval_str = "del " + interval[0] + " al " + interval[1]
+            date_format = "%d/%m/%Y"
+            date_to = datetime.strptime(interval[1], date_format)
+            date_to = date_to - timedelta(days=1)
+            date_to = datetime.strptime(str(date_to), '%Y-%m-%d %H:%M:%S').strftime(
+                '%d/%m/%Y')
+            interval_str = "del " + interval[0] + " al " + date_to
             dispatcher.utter_message("Perfecto, tus dias de vacaciones "+ interval_str + " han quedado registrados")
 
         elif entity == 'day':
