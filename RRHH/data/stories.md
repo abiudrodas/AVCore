@@ -31,8 +31,12 @@
 - utter_anything_else
 
 ## thanks path 1
-* thanks
-- utter_anything_else
+* thanks OR affirmative
+- utter_help
+
+## negative path
+* negation
+- utter_bye_by_negation
 
 ## bye path 1
 * bye

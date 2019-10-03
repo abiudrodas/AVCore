@@ -53,6 +53,7 @@ actions:
   - action_get_schedule
   - action_set_vacations
   - utter_get_schedule
+  - utter_bye_by_negation
 templates:
   utter_greet:
     - text: Hola, como estas?
@@ -70,6 +71,10 @@ templates:
   utter_bye:
     - text: adios que tengas un buen dia
     - text: ciao, un placer servirte
+  utter_bye_by_negation:
+    - text: OK, hasta la próxima
+    - text: De acuerdo, un placer ayudarte
+    - text: OK
   utter_default:
     - text: No estoy seguro de lo que me estas pidiendo.
     - text: Lo siento, no te entiendo.
