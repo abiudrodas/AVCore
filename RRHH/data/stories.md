@@ -77,7 +77,16 @@
 - action_get_nomina
 - utter_anything_else
 
-## reset password path
+## reset password done
 * password_reset
 - action_pws_rst
-- utter_anything_else
+- utter_ask_done
+* affirmative
+- utter_help
+
+## reset password not done
+* password_reset
+- action_pws_rst
+- utter_ask_done
+* negation
+- utter_sorry

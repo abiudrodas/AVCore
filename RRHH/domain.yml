@@ -59,6 +59,8 @@ actions:
   - action_set_vacations
   - utter_get_schedule
   - utter_bye_by_negation
+  - utter_ask_done
+  - utter_sorry
 templates:
   utter_greet:
     - text: Hola, como estas?
@@ -107,4 +109,14 @@ templates:
     - text: Aún no puedo darte las nóminas para el periodo indicado
   utter_nomina_month:
     - text: Aún no puedo darte la nómina para el mes solicitado
+  utter_ask_donde:
+    - text: Esto ha sido de ayuda?
+    - text: Esto es lo que necesitas?
+    - text: Puedes resolver tu problema con esto?
+    - text: Esta información es suficiente para resolver tu problema?
+  utter_sorry:
+    - text: Lo lamento, por ahora es todo lo que puedo hacer :(
+    - text: Lamento no poder ayudarte un poco más
+    - text: Ups, por ahora no puedo hacerlo mejor, lo siento :(
+    - text: Lo siento mucho, no puedo ayudarte a resolver esto por ahora
 
