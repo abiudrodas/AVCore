@@ -36,7 +36,10 @@ intents:
   - vacation_range
   - get_schedule_in
   - get_schedule_out
+  - password_reset
+
 actions:
+  - action_pws_rst
   - action_restart
   - utter_greet
   - utter_reply

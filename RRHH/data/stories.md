@@ -76,3 +76,8 @@
 * get_nomina{"month": "05 2019"}
 - action_get_nomina
 - utter_anything_else
+
+## reset password path
+* password_reset
+- action_pws_rst
+- utter_anything_else

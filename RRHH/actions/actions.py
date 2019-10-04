@@ -127,4 +127,17 @@ class ActionsetVacations(Action):
 
             dispatcher.utter_message(utter_str)
 
+
+        return []
+
+class ActionPasswordReset(Action):
+
+    def name(self) -> Text:
+        return "action_pws_rst"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message("Tal vez esto puede servirte:")
+        dispatcher.utter_message("https://support.google.com/mail/answer/41078")
         return []
