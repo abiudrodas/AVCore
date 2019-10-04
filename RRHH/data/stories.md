@@ -82,7 +82,7 @@
 - action_pws_rst
 - utter_ask_done
 * affirmative
-- utter_help
+- utter_anything_else
 
 ## reset password not done
 * password_reset
@@ -90,3 +90,4 @@
 - utter_ask_done
 * negation
 - utter_sorry
+- utter_anything_else
