@@ -29,9 +29,7 @@ intents:
   - set_schedule_in
   - set_schedule_out
   - affirmative
-  - negation:
-      triggers: utter_bye_by_negation
-      entities: false
+  - negation
   - user_number
   - vacation_range
   - get_schedule_in
