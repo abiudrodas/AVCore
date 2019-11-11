@@ -12,6 +12,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from datetime import datetime, timedelta
+from RRHH.actions.custom_mail import send_email
 
 class ActiongetNominas(Action):
 
@@ -22,6 +23,7 @@ class ActiongetNominas(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        sender = tracker.sender_id
         entity = tracker.latest_message["entities"][0]['entity']
 
         if entity == 'interval':
@@ -61,6 +63,8 @@ class ActionsetSchedule(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        sender = tracker.sender_id
         utter_schedule = ""
         intent = tracker.latest_message["intent"]["name"]
         entity = tracker.latest_message["entities"][0]['entity']
@@ -84,6 +88,8 @@ class ActionsgetSchedule(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        sender = tracker.sender_id
         utter_schedule = ""
         intent = tracker.latest_message["intent"]["name"]
         entity = tracker.latest_message["entities"][0]['entity']
@@ -108,6 +114,7 @@ class ActionsetVacations(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        sender = tracker.sender_id
         entity = tracker.latest_message["entities"][0]['entity']
 
         if entity == 'interval':
@@ -119,11 +126,20 @@ class ActionsetVacations(Action):
             date_to = datetime.strptime(str(date_to), '%Y-%m-%d %H:%M:%S').strftime(
                 '%d/%m/%Y')
             interval_str = "del " + interval[0] + " al " + date_to
-            dispatcher.utter_message("Perfecto, tus dias de vacaciones "+ interval_str + " han quedado registrados")
+
+            if sender == 'a.rojas':
+                email_sender = "abiudrodas@holahal.com"
+            elif sender == 'i.fernandez':
+                email_sender = "ifernandez@holahal.com"
+
+            send_email(user=sender, user_mail=email_sender,subject="Peticion de Vacaciones",additional_data=[interval_str])
+
+            dispatcher.utter_message(
+                "Perfecto, tus dias de vacaciones " + interval_str + " han sido solicitadas a tu responsable, recibiras un email cuando estas sean aprobadas")
 
         elif entity == 'day':
             day = next(tracker.get_latest_entity_values(entity))
-            utter_str = "OK, te he pedido vacaciones el día " + day
+            utter_str = "OK, te he pedido vacaciones el día " + day + ", Recibiras una notificación en tu email cuando tu responsable lo apruebe"
 
             dispatcher.utter_message(utter_str)
 
@@ -138,6 +154,7 @@ class ActionPasswordReset(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message("Tal vez esto puede servirte:")
+        sender = tracker.sender_id
+        dispatcher.utter_message("Hola "+ sender + " Tal vez esto puede servirte:")
         dispatcher.utter_message("https://support.google.com/mail/answer/41078")
         return []
