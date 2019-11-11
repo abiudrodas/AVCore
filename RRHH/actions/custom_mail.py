@@ -14,7 +14,8 @@ def send_email(user, user_mail, subject, additional_data=[None]):
     Saludos \n RRHH bot'''.format("i.fernandez", user, additional_data[0], "[link to CRM]")
     sender_address = base64.b64decode(mail['user']).decode("utf-8")
     sender_pass = base64.b64decode(mail['pass']).decode("utf-8")
-    receiver_address = user_mail
+    receiver_address = user_mail	
+
     # Setup the MIME
     message = MIMEMultipart()
     message['From'] = sender_address
@@ -29,7 +30,7 @@ def send_email(user, user_mail, subject, additional_data=[None]):
     text = message.as_string()
     session.sendmail(sender_address, receiver_address, text)
     session.quit()
-    print('Mail Sent')
+    # print('Mail Sent')
 
 
 if __name__ == "__main__":

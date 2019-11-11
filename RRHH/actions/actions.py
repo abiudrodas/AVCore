@@ -12,7 +12,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from datetime import datetime, timedelta
-from RRHH.actions.custom_mail import send_email
+from custom_mail import send_email
 
 class ActiongetNominas(Action):
 
@@ -127,10 +127,7 @@ class ActionsetVacations(Action):
                 '%d/%m/%Y')
             interval_str = "del " + interval[0] + " al " + date_to
 
-            if sender == 'a.rojas':
-                email_sender = "abiudrodas@holahal.com"
-            elif sender == 'i.fernandez':
-                email_sender = "ifernandez@holahal.com"
+            email_sender = "ifernandez@holahal.com"
 
             send_email(user=sender, user_mail=email_sender,subject="Peticion de Vacaciones",additional_data=[interval_str])
 
