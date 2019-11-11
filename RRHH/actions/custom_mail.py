@@ -2,6 +2,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import pickle
+import base64
 
 def send_email(user, user_mail, subject, additional_data=[None]):
     # The mail addresses and password
@@ -11,8 +12,8 @@ def send_email(user, user_mail, subject, additional_data=[None]):
     mail_content = '''Hola {}, Te informamos que el usuario {} está solicitando vacaciones para el periodo {}, 
     para aprobar esta solicitud accede al siguiente enlace {}
     Saludos \n RRHH bot'''.format("i.fernandez", user, additional_data[0], "[link to CRM]")
-    sender_address = mail['user']
-    sender_pass = mail['pass']
+    sender_address = base64.b64decode(mail['user']).decode("utf-8")
+    sender_pass = base64.b64decode(mail['pass']).decode("utf-8")
     receiver_address = user_mail
     # Setup the MIME
     message = MIMEMultipart()
