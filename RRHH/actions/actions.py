@@ -116,6 +116,7 @@ class ActionsetVacations(Action):
 
         sender = tracker.sender_id
         entity = tracker.latest_message["entities"][0]['entity']
+        email_sender = "ifernandez@holahal.com"
 
         if entity == 'interval':
             interval = next(tracker.get_latest_entity_values(entity))
@@ -127,8 +128,6 @@ class ActionsetVacations(Action):
                 '%d/%m/%Y')
             interval_str = "del " + interval[0] + " al " + date_to
 
-            email_sender = "ifernandez@holahal.com"
-
             send_email(user=sender, user_mail=email_sender,subject="Peticion de Vacaciones",additional_data=[interval_str])
 
             dispatcher.utter_message(
@@ -136,12 +135,15 @@ class ActionsetVacations(Action):
 
         elif entity == 'day':
             day = next(tracker.get_latest_entity_values(entity))
+
+            send_email(user=sender, user_mail=email_sender, subject="Peticion de Vacaciones",
+                       additional_data=[day])
             utter_str = "OK, te he pedido vacaciones el día " + day + ", Recibiras una notificación en tu email cuando tu responsable lo apruebe"
 
             dispatcher.utter_message(utter_str)
 
-
         return []
+
 
 class ActionPasswordReset(Action):
 
