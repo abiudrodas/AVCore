@@ -95,7 +95,7 @@ class ActionsetSchedule(Action):
         entity = tracker.latest_message["entities"][0]['entity']
         date = next(tracker.get_latest_entity_values(entity))
         date = date.split(" ")
-        print(date)
+        #print(date)
         if intent == "set_schedule_in":
             utter_schedule = "Tu entrada del " + date[1] + " ha sido registrada a las " + date[0]
         elif intent == "set_schedule_out":
@@ -119,7 +119,7 @@ class ActionsgetSchedule(Action):
         intent = tracker.latest_message["intent"]["name"]
         entity = tracker.latest_message["entities"][0]['entity']
         date = next(tracker.get_latest_entity_values(entity))
-        print(date)
+        #print(date)
         if intent == "get_schedule_in":
             utter_schedule = "Tu entrada del " + date + " se registró a las 08:00 hrs"
         elif intent == "get_schedule_out":
