@@ -23,21 +23,6 @@ def generate_nomina(month):
     return link
 
 
-def send_whatsapp(msg, phone_to=None, attachment=None):
-    # Your Account Sid and Auth Token from twilio.com/console
-    # DANGER! This is insecure. See http://twil.io/secure
-    account_sid = "ACe87a63fe61178c294fd915c1ab1a5db5"
-    auth_token = "e4e45fb2cd61f29a4973e68b922557b4"
-    client = Client(account_sid, auth_token)
-
-    message = client.messages \
-        .create(
-        from_='whatsapp:+14155238886',
-        body=msg,
-        to=phone_to,
-        media_url=attachment
-    )
-
 def upload_file_exp(name=None):
     import requests
 
