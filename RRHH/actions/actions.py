@@ -60,7 +60,7 @@ class ActiongetNominas(Action):
                 unit_month = months[0].split(" ")
                 # print("UNIT MONTH ", unit_month)
                 month_str = unit_month[0] + "-" + unit_month[1]
-                utter_months = "Aun no puedo darte la nomina del " + month_str + " porque no estoy integrado a ningún CRM"
+                utter_months = "Aqui tienes la nomina del " + month_str
 
                 links.append(generate_nomina(month_str))
 
@@ -69,8 +69,8 @@ class ActiongetNominas(Action):
                     month = month.split(" ")
                     links.append(generate_nomina(month[0] + "-" + month[1]))
                     month_str = month_str + month[0] + "-" + month[1] + ", "
-                utter_months = "Aun no puedo darte las nominas de los meses " + month_str.strip(
-                    ", ") + " porque no estoy integrado a ningún CRM"
+                utter_months = "Aqui están las nominas de los meses " + month_str.strip(
+                    ", ")
 
             dispatcher.utter_message(utter_months)
 
