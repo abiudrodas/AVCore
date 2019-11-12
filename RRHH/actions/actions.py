@@ -13,6 +13,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from datetime import datetime, timedelta
 from custom_mail import send_email
+from pdf_gen import generate_nomina
 
 class ActiongetNominas(Action):
 
@@ -29,9 +30,23 @@ class ActiongetNominas(Action):
         if entity == 'interval':
             interval = next(tracker.get_latest_entity_values(entity))
             interval = interval.split(" ")
-            interval_str = "del " + interval[0] + "/" + interval[1] + " al " + interval[2] + "/" + interval[3]
+            interval_str = "del " + interval[0] + "-" + interval[1] + " al " + interval[2] + "-" + interval[3]
+
+            end_range = int(interval[2])
+            links = []
+
+            if int(interval[3]) > int(interval[1]):
+                end_range = int(interval[0]) + (12-int(interval[0])) + int(interval[2])
+
+            for x in range(int(interval[0]), end_range + 1):
+                if x <= 12:
+                    links.append(generate_nomina(str(x) + "-" + interval[1]))
+
             dispatcher.utter_message(
-                "Aún no puedo darte las nóminas del periodo " + interval_str + " porque no estoy integrado a ningún CRM")
+                "Aquí tienes las nóminas del periodo " + interval_str)
+
+            for link in links:
+                dispatcher.utter_message("media " + link)
 
         elif entity == 'month':
             months = next(tracker.get_latest_entity_values(entity))
@@ -39,21 +54,31 @@ class ActiongetNominas(Action):
             utter_months = ""
             month_str = ""
 
+            links = []
+
             if len(months) == 1:
                 unit_month = months[0].split(" ")
-                print("UNIT MONTH ",unit_month)
-                month_str = unit_month[0] + "/" + unit_month[1]
+                # print("UNIT MONTH ", unit_month)
+                month_str = unit_month[0] + "-" + unit_month[1]
                 utter_months = "Aun no puedo darte la nomina del " + month_str + " porque no estoy integrado a ningún CRM"
+
+                links.append(generate_nomina(month_str))
+
             elif len(months) > 1:
                 for month in months:
                     month = month.split(" ")
-                    month_str = month_str + month[0] + "/" + month[1] + ", "
+                    links.append(generate_nomina(month[0] + "-" + month[1]))
+                    month_str = month_str + month[0] + "-" + month[1] + ", "
                 utter_months = "Aun no puedo darte las nominas de los meses " + month_str.strip(
                     ", ") + " porque no estoy integrado a ningún CRM"
 
             dispatcher.utter_message(utter_months)
 
+            for link in links:
+                dispatcher.utter_message("media " + link)
+
         return []
+
 
 class ActionsetSchedule(Action):
 

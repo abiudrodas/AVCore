@@ -20,7 +20,7 @@ def generate_nomina(month):
     link = upload_file_exp(name)
     os.remove(name)
 
-    send_whatsapp(msg="Aqui tienes la nomina del "+month, phone_to='whatsapp:+34634146030', attachment=link)
+    return link
 
 
 def send_whatsapp(msg, phone_to=None, attachment=None):
