@@ -91,3 +91,35 @@
 * negation
 - utter_sorry
 - utter_anything_else
+
+## schedule simple appointment
+* simple_appointment{"day": "00:00:00 27-11-2019"}
+- slot{"day" : "00:00:00 27-11-2019"}
+- utter_ask_preference
+* category_appointment
+- action_get_availabilty
+* spec_hour
+- action_set_appointment
+- utter_anything_else
+
+## schedule appointment not hour
+* appointment_with_category
+- action_get_availabilty
+* spec_hour
+- action_set_appointment
+- utter_anything_else
+
+## schedule appointment hour available
+* appointment_with_hour
+- action_set_appointment
+
+## schedule appointment hour not available
+* spec_hour
+- action_set_appointment
+- utter_anything_else
+
+## get availability of a period or day
+* get_availability
+- action_get_availabilty
+
+

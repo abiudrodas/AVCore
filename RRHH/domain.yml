@@ -1,6 +1,8 @@
 slots:
   id_code:
     type: text
+  day:
+    type: text
 entities:
   - id_code
   - number
@@ -9,6 +11,8 @@ entities:
   - day
   - week
   - month
+  - period
+  - hour
 intents:
   - greet:
       triggers: utter_greet
@@ -35,6 +39,12 @@ intents:
   - get_schedule_in
   - get_schedule_out
   - password_reset
+  - simple_appointment
+  - category_appointment
+  - appointment_with_category
+  - appointment_with_hour
+  - get_availability
+  - spec_hour
 
 actions:
   - action_pws_rst
@@ -59,6 +69,9 @@ actions:
   - utter_bye_by_negation
   - utter_ask_done
   - utter_sorry
+  - utter_ask_preference
+  - action_get_availabilty
+  - action_set_appointment
 templates:
   utter_greet:
     - text: Hola, como estas?
@@ -117,4 +130,8 @@ templates:
     - text: Lamento no poder ayudarte un poco más
     - text: Ups, por ahora no puedo hacerlo mejor, lo siento :(
     - text: Lo siento mucho, no puedo ayudarte a resolver esto por ahora
+  utter_ask_preference:
+    - text: Prefieres que la solicite por la mañana, al medio día o por la tarde?
+    - text: Por la mañana, al medio día o por la tarde?
+    - text: Prefieres que pida tu cita por la mañana, al medio día o por la tarde?
 
