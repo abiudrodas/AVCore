@@ -80,11 +80,9 @@ class manage_calendar:
             return event_result
 
     def free_busy_state(self, start, end=None, duration=1):
-        print(start)
         matches = list(datefinder.find_dates(start))
         if len(matches):
             start_time = matches[0]
-            print(start_time)
         if end is not None:
             matches_2 = list(datefinder.find_dates(end))
             if len(matches):
