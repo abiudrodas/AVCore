@@ -110,7 +110,7 @@
 - utter_anything_else
 
 ## schedule appointment hour available
-* appointment_with_hour
+* appointment_with_hour{"day": "08:00:00 03-12-2019"}
 - action_set_appointment
 
 ## schedule appointment hour not available
