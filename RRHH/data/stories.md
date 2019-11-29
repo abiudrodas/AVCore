@@ -100,14 +100,12 @@
 - action_get_availabilty
 * spec_hour
 - action_set_appointment
-- utter_anything_else
 
 ## schedule appointment not hour
 * appointment_with_category
 - action_get_availabilty
 * spec_hour
 - action_set_appointment
-- utter_anything_else
 
 ## schedule appointment hour available
 * appointment_with_hour
@@ -116,7 +114,6 @@
 ## schedule appointment hour not available
 * spec_hour
 - action_set_appointment
-- utter_anything_else
 
 ## get availability of a period or day
 * get_availability
