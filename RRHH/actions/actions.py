@@ -316,7 +316,7 @@ def create_event_calendar(date):
         date, hour = date.split(' ')
         date = date.split('-')
         date = date[1] + '-' + date[0] + '-' + date[2]
-        message = 'Perfecto tu cita ha sido confirmada para el día {} a las {}, Puedo hacer algo mas por ti?'.format(
+        message = 'Perfecto tu cita ha sido confirmada para el día {} a las {}.'.format(
             date, hour[:5])
         AllSlotsReset()
     elif response['status'] == 'unavailable':
